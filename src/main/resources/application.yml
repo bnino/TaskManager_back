@@ -1,0 +1,20 @@
+## YAML Template.
+---
+spring:
+    application:
+        name: TaskManager
+    datasource:
+        password: 1234
+        url: jdbc:postgresql://localhost:5432/task_manager
+        username: postgres
+    jpa:
+        database: POSTGRESQL
+        generate-ddl: true
+        hibernate:
+            ddl-auto: update
+        show-sql: true
+    main:
+        start-class: com.TaskManager.TaskManagerApplication
+    sql:
+        ini:
+            platform: postgres
