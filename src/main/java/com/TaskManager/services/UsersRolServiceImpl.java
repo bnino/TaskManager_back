@@ -1,6 +1,7 @@
 package com.TaskManager.services;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,9 +26,20 @@ public class UsersRolServiceImpl implements UsersRolService {
     }
 
     @Override
-    public UsersRol findUserById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findUserById'");
+    public UsersRol updateUserRol(Long id, UsersRol userRol) {
+        UsersRol usersRolDb = usersRolRepository.findById(id).get();
+
+        if (Objects.nonNull(userRol.getDescription()) && !"".equalsIgnoreCase(userRol.getDescription())) {
+            usersRolDb.setDescription(userRol.getDescription());
+        }
+
+        return usersRolRepository.save(usersRolDb);
     }
+
+    @Override
+    public void deleteUserRol(Long id) {
+        if (Objects.nonNull(usersRolRepository.findById(id).get())) usersRolRepository.deleteById(id);
+    }
+
 
 }

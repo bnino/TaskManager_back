@@ -10,8 +10,4 @@ public class UsersTasksRepositoryTest {
     @Autowired
     UsersTasksRepository usersTasksRepository;
 
-    @Test
-    void testFindUsersTasksByIdUserAssigned() {
-
-    }
 }
