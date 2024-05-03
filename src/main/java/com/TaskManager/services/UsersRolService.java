@@ -5,10 +5,12 @@ import com.TaskManager.entity.UsersRol;
 
 public interface UsersRolService {
 
-    public List<UsersRol> findAllUsers();
+    List<UsersRol> findAllUsers();
 
-    public UsersRol saveUser(UsersRol user);
+    UsersRol saveUser(UsersRol user);
 
-    public UsersRol findUserById(Long id);
+    UsersRol updateUserRol(Long id, UsersRol user);
+
+    void deleteUserRol(Long id);
 
 }

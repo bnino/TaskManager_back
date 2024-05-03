@@ -10,4 +10,8 @@ public interface TaskTypesService {
 
     public TaskTypes saveTask(TaskTypes taskType);
 
+    public TaskTypes updateTaskType(Long id, TaskTypes taskType);
+
+    public void deleteTaskType (Long id);
+
 }
