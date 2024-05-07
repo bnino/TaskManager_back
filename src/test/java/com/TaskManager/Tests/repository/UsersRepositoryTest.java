@@ -15,7 +15,7 @@ public class UsersRepositoryTest {
 
     @Test
     public void testFindByUsername() {
-        Users user = usersRepository.findByUsername("bnino").get();
+        Users user = usersRepository.findUserByUsername("bnino").get();
         System.out.println("User: " + user);
     }
 }

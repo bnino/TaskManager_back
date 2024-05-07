@@ -4,19 +4,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ForeignKey;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
-import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -78,10 +66,14 @@ public class Users implements UserDetails {
     @Temporal(TemporalType.TIMESTAMP)
     private Date creation_date;
     
+    /*
     @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_user_rol_id"), name = "id_rol")
     private UsersRol rol;
-    
+    */
+    @Enumerated(EnumType.ORDINAL)
+    private Role role;
+
     @PrePersist
     protected void onCreate(){
         creation_date = new Date();
@@ -89,7 +81,7 @@ public class Users implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(rol.getDescription()));
+        return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
     @Override
