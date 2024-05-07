@@ -62,8 +62,8 @@ public class UsersServiceImpl implements UsersService{
         if (Objects.nonNull(user.getUsername()) && !"".equalsIgnoreCase(user.getUsername())) {
             userDb.setUsername(user.getUsername());
         }
-        if (Objects.nonNull(user.getRol()) && user.getRol() != userDb.getRol()) {
-            userDb.setRol(user.getRol());
+        if (Objects.nonNull(user.getRole()) && user.getRole() != userDb.getRole()) {
+            userDb.setRole(user.getRole());
         }
 
         return usersRepository.save(userDb);
