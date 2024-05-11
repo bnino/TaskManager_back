@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import com.TaskManager.entity.Enums.UsersRole;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -72,7 +73,7 @@ public class Users implements UserDetails {
     private UsersRol rol;
     */
     @Enumerated(EnumType.ORDINAL)
-    private Role role;
+    private UsersRole role;
 
     @PrePersist
     protected void onCreate(){

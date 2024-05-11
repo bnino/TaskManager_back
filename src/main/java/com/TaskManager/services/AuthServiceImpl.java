@@ -4,11 +4,9 @@ import com.TaskManager.config.JwtService;
 import com.TaskManager.controller.models.AuthRequest;
 import com.TaskManager.controller.models.AuthResponse;
 import com.TaskManager.controller.models.RegisterRequest;
-import com.TaskManager.entity.Role;
 import com.TaskManager.entity.Users;
 import com.TaskManager.repository.UsersRepository;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.User;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -40,7 +38,9 @@ public class AuthServiceImpl implements AuthService {
 
         var jwtToken = jwtService.generateToken(user);
         return AuthResponse.builder()
-                .token(jwtToken).build();
+                .token(jwtToken)
+                .username(user.getUsername())
+                .build();
     }
 
     @Override

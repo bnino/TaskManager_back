@@ -1,7 +1,6 @@
 package com.TaskManager.controller.models;
 
-import com.TaskManager.entity.Role;
-import com.TaskManager.entity.UsersRol;
+import com.TaskManager.entity.Enums.UsersRole;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -37,7 +36,7 @@ public class RegisterRequest {
     private String phone;
 
     @Enumerated(EnumType.ORDINAL)
-    private Role role;
+    private UsersRole role;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date creation_date;
