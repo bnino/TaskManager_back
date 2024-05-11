@@ -1,5 +1,6 @@
 package com.TaskManager.repository;
 
+import com.TaskManager.entity.Enums.UsersRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.TaskManager.entity.Users;
@@ -15,4 +16,6 @@ public interface UsersRepository extends JpaRepository <Users, Long> {
     List<Users> findAllUsersByOrderByIdUserASC();
 
     Optional<Users> findUserByUsername(String username);
+
+    List<Users> findUsersByRoleOrderByFirstnameAsc(UsersRole userRole);
 }

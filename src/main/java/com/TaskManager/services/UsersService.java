@@ -2,6 +2,7 @@ package com.TaskManager.services;
 
 import java.util.List;
 
+import com.TaskManager.entity.Enums.UsersRole;
 import com.TaskManager.entity.Users;
 import com.TaskManager.error.UserNotFoundException;
 
@@ -16,5 +17,9 @@ public interface UsersService {
     public Users updateUser(Long id, Users user);
     
     public void deleteUser(Long id);
+
+    List<Users> findUsersByUserRole(UsersRole userRole);
+
+    List<Users> findSupportUsers();
     
 }

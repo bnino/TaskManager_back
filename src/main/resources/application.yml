@@ -15,6 +15,7 @@ spring:
         show-sql: true
     main:
         start-class: com.TaskManager.TaskManagerApplication
+
     sql:
         ini:
             platform: postgres

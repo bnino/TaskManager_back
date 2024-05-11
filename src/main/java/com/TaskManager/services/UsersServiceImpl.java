@@ -3,6 +3,7 @@ package com.TaskManager.services;
 import java.util.List;
 import java.util.Objects;
 
+import com.TaskManager.entity.Enums.UsersRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -72,5 +73,15 @@ public class UsersServiceImpl implements UsersService{
     @Override
     public void deleteUser(Long id) {
         usersRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Users> findUsersByUserRole(UsersRole userRole) {
+        return usersRepository.findUsersByRoleOrderByFirstnameAsc(userRole);
+    }
+
+    @Override
+    public List<Users> findSupportUsers() {
+        return usersRepository.findUsersByRoleOrderByFirstnameAsc(UsersRole.SUPPORT_USER);
     }
 }
