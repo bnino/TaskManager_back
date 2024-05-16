@@ -1,8 +1,11 @@
 package com.TaskManager.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
+import com.TaskManager.entity.Enums.TaskStatusList;
 import com.TaskManager.entity.Enums.TaskType;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -16,31 +19,36 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Tasks {
+public class Tasks implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_task;
+    private Long idTask;
 
     @NotBlank
     private String title;
     private String detail;
 
-    @Column(length = 30)
-    private String status;
-
     @Temporal(TemporalType.TIMESTAMP)
-    private Date start_date;
+    private Date startDate;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date update_date;
-
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_user_id"), name = "id_user")
-    private Users id_user;
+    //@JsonInclude(JsonInclude.Include.NON_NULL)
+    private Users idUser;
 
     @Enumerated(EnumType.ORDINAL)
     private TaskType taskType;
+
+    /*@OneToOne(
+            cascade = CascadeType.ALL
+    )
+    @JoinColumn(
+            name = "task_status_id",
+            referencedColumnName = "taskStatusId",
+            foreignKey = @ForeignKey(name = "fk_task_status_id")
+    )
+    private TaskStatus taskStatus;*/
     
     /*@ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_task_type_id"), name = "id_task_type")
@@ -48,8 +56,7 @@ public class Tasks {
 
     @PrePersist
     protected void onCreate(){
-        start_date = new Date();
-        update_date = new Date();
+        startDate = new Date();
     }
 
 }
