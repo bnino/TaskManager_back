@@ -1,6 +1,7 @@
 package com.TaskManager.entity;
 
 import com.TaskManager.entity.Enums.TaskStatusList;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,19 +33,20 @@ public class TaskStatus {
     private Long taskStatusId;
 
     @Enumerated(EnumType.ORDINAL)
-    private TaskStatusList status = TaskStatusList.RECIBIDO;
+    private TaskStatusList status;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
 
     @ManyToOne(
-            cascade = CascadeType.ALL
+            cascade = CascadeType.PERSIST
     )
     @JoinColumn(
             name = "id_task",
             referencedColumnName = "idTask",
             foreignKey = @ForeignKey(name = "fk_task_id")
     )
+    @JsonIgnore
     private Tasks idTask;
 
     @PrePersist

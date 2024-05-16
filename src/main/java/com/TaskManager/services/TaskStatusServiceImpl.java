@@ -1,6 +1,8 @@
 package com.TaskManager.services;
 
+import com.TaskManager.entity.Enums.TaskStatusList;
 import com.TaskManager.entity.TaskStatus;
+import com.TaskManager.entity.Tasks;
 import com.TaskManager.error.TaskStatusNotFoundException;
 import com.TaskManager.repository.TaskStatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +32,12 @@ public class TaskStatusServiceImpl implements TaskStatusService{
     }
 
     @Override
-    public TaskStatus save(TaskStatus taskStatus) {
+    public TaskStatus save(Tasks idTask, TaskStatusList status) {
+        TaskStatus taskStatus = new TaskStatus();
+        taskStatus.setIdTask(idTask);
+        taskStatus.setStatus(status);
         return taskStatusRepository.save(taskStatus);
+
     }
 
     @Override

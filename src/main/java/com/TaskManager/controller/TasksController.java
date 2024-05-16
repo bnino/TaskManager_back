@@ -2,6 +2,8 @@ package com.TaskManager.controller;
 
 import java.util.List;
 
+import com.TaskManager.controller.models.UpdateTaskStatusRequest;
+import com.TaskManager.entity.Enums.TaskStatusList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +20,16 @@ public class TasksController {
     @GetMapping("/findAll")
     public List<Tasks> findAllTasks(){
         return taskService.findAllTasks();
+    }
+
+    @GetMapping("/findByIdTask/{id}")
+    public Tasks findByIdTask(@PathVariable Long id){
+        return taskService.findTaskById(id);
+    }
+
+    @PutMapping("/updateTaskStatus/{id}")
+    public Tasks updateTaskStatus(@PathVariable Long id, @RequestBody UpdateTaskStatusRequest status){
+        return taskService.updateStatusTask(id, status.getTaskStatus());
     }
 
     @PostMapping("/saveTask")

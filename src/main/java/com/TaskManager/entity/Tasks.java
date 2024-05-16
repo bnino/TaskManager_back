@@ -1,7 +1,9 @@
 package com.TaskManager.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.TaskManager.entity.Enums.TaskStatusList;
 import com.TaskManager.entity.Enums.TaskType;
@@ -39,6 +41,13 @@ public class Tasks implements Serializable {
 
     @Enumerated(EnumType.ORDINAL)
     private TaskType taskType;
+
+    @OneToMany(
+            mappedBy = "idTask",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private List<TaskStatus> statusHistory = new ArrayList<TaskStatus>();
 
     /*@OneToOne(
             cascade = CascadeType.ALL
