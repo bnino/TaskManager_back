@@ -12,5 +12,4 @@ import lombok.NoArgsConstructor;
 public class ErrorMessage {
     private HttpStatus status;
     private String message;
-
 }

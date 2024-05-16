@@ -1,10 +1,13 @@
 package com.TaskManager.entity;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
 import com.TaskManager.entity.Enums.UsersRole;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -34,7 +37,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Users implements UserDetails {
+public class Users implements UserDetails, Serializable {
 
     @Id
     @GeneratedValue(
@@ -57,6 +60,7 @@ public class Users implements UserDetails {
 
     @NotBlank(message = "Please, add a password")
     @Length(min = 6)
+    @JsonIgnore
     private String password;
 
     @NotBlank(message = "Please, add an email")
